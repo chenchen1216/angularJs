@@ -1,0 +1,19 @@
+<!doctype html>
+<html ng-app="app">
+<head>
+   
+</head>
+<body>
+<div ng-controller="MyController">
+    <h1>hello {{ clock.now }}!</h1>
+    <h1>clock.count= {{ clock.count }}</h1> 
+    <button ng-click="add(10)" class="button">Add +10</button>
+    <h1>counter= {{counter}}</h1>
+</div>
+ <script type="text/javascript" src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.js">
+    </script>
+<script src="../js/clock.js">
+   
+</script>
+</body>
+</html>

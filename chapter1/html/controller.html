@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html ng-app="cc">
+<head>
+	<meta charset="utf-8">
+	<script src="../js/angular.min.js"></script>
+</head>
+<body>
+<div ng-controller="cc">
+   
+    <h1>msg= {{msg}}</h1>
+    <input type="button" ng-click="subtract(1)" name="Subtract" title="Subtract" />
+    <h4>Current count: {{ counter }}</h4> 
+</div>
+<script type="text/javascript">
+	angular.module('cc', [])
+            .controller('cc', ['$scope', function ($scope) {
+            	$scope.msg = "this is controller";
+            	$scope.counter = 10;
+            	$scope.subtract = function (amount){
+            		$scope.counter-=amount;
+            	}
+            }]);
+
+
+</script>
+</body>
+
+</html>
