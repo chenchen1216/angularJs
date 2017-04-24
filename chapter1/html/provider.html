@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html ng-app='pro'>
+<head>
+	<meta charset="utf-8">
+	<script src="../js/angular.min.js"></script>
+	
+</head>
+<body ng-controller="MyController">  
+	<p>$scope.artlistFac = {{artlistFac}}</p>
+	<p>$scope.artlistSer = {{artlistSer}}</p>
+	<p>$scope.initconfig = {{initconfig}}</p>
+	<p>$scope.artlistPro = {{artlistPro}}</p>
+    <ul>
+    <li ng-repeat="artFac in artlistFac">
+    <p>{{artFac}}</p>
+    </li>
+    </ul> 
+     <ul >
+    <li ng-repeat="artSer in artlistSer">
+    <p>{{artSer}}</p>
+    </li>
+    </ul> 
+
+
+</body> 
+<script type="text/javascript">
+var app = angular.module('pro',[]);
+app.factory('MyFactory', function(){
+	var _artlist =['f1','f2'];  
+    var service = {};  
+    service.getArtlist = function(){
+    	return _artlist;
+    };   
+    return service;  
+});
+
+
+app.service('MyService', function(){
+	var _artlist =['s1','s2'];  
+	 this.getArtlist= function(){
+	 	return _artlist;
+	 };  
+});
+
+app.provider('MyProvider', function() {  
+	this.initconfig = '';
+	this._artlist ='';
+    this.$get = function() {  
+    	var that = this;
+        return{
+        	initconfig : that.initconfig,
+        	getArtlist: function(){
+        		return that._artlist;
+        	} 
+        }
+        
+    } 
+
+});  
+/*app.config(function(MyProvider) {
+	MyProvider.initconfig = 'this is init config';
+});*/
+/*app.controller('MyController', ['MyProvider', function($scope,MyProvider){
+	//$scope.artlistPro = MyProvider.getArtlist();
+	$scope.initconfig = MyProvider.initconfig;
+}])*/
+app.controller('MyController', ['$scope', 'MyFactory', 'MyService', function($scope, myFactory, myService) {  
+    $scope.artlistFac = myFactory.getArtlist();  
+     $scope.artlistSer = myService.getArtlist();   
+    
+}]); 
+</script>
+
+</html>
